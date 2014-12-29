@@ -1,0 +1,19 @@
+{
+    "name": "mofumofu3n/anime-hash-tag",
+    "description": "get Twitter Hash Tag from zish.jp",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "mofumofu san",
+            "email": "mofumofu3n@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mofumofu3n\\AnimeHashTag\\": "src/Mofumofu3n/AnimeHashTag"
+        }
+    }
+}
