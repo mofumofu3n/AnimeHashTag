@@ -50,10 +50,10 @@ class HashTag
     private function createHashTagList()
     {
         if (file_exists(HASH_TAG_XML) === false) {
-            putFile();
+            $this->putFile();
         } else {
             if ($this->getUpdateTime('+2 month')) {
-                putFile();
+                $this->putFile();
             }
         }
         return simplexml_load_file(HASH_TAG_XML);
