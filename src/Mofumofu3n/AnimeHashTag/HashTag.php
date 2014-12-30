@@ -1,14 +1,16 @@
 <?php
 namespace Mofumofu3n\AnimeHashTag;
 
+define("HASH_TAG_XML", __DIR__."/data/hashtag.xml");
+define("HASH_TAG_URL", "http://zish.jp/hashtag.xml");
+
 class HashTag
 {
-    const HASH_TAG_XML = "http://zish.jp/hashtag.xml";
-
     private $hashTagList;
 
-    public function __construct() {
-        $this->hashTagList = $this->createProgramList();
+    public function __construct()
+    {
+        $this->hashTagList = $this->createHashTagList();
     }
 
     public function get($target)
@@ -27,15 +29,18 @@ class HashTag
     }
 
     /**
-     * createProgramList
-     * アニメタイトルの一覧を返す
+     * createHashTagList
      *
      * @access private
      * @return array
      */
-    private function createProgramList()
+    private function createHashTagList()
     {
-        $programList = array();
-        return simplexml_load_file(self::HASH_TAG_XML);
+        if (file_exists(HASH_TAG_XML) === false) {
+            $xmlData = file_get_contents(self::HASH_TAG_URL);
+            $result = file_put_contents(HASH_TAG_XML, $xmlData);
+            var_dump($result);
+        }
+        return simplexml_load_file(HASH_TAG_XML);
     }
 }
