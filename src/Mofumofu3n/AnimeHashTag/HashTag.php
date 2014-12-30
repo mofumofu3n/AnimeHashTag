@@ -13,7 +13,7 @@ class HashTag
         $this->hashTagList = $this->createHashTagList();
     }
 
-    public function get($target)
+    public function similar($target)
     {
         $shortest = -1;
         foreach ($this->hashTagList as $hashtag) {

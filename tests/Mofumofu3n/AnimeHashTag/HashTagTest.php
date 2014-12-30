@@ -14,7 +14,7 @@ class HashTagTest extends \PHPUnit_Framework_TestCase
     {
         $target = "『画像』俺、ツインテールになります。の作画!! 今期アニメで一番酷いな…もう笑うしかないよ…";
         $anser = "#ore_twi";
-        $result = $this->hashtag->get($target);
+        $result = $this->hashtag->similar($target);
         var_dump($result);
         $this->assertSame($anser, (string) $result->hashtag);
     }
