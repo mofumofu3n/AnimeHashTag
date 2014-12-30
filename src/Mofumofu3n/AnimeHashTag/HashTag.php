@@ -37,10 +37,31 @@ class HashTag
     private function createHashTagList()
     {
         if (file_exists(HASH_TAG_XML) === false) {
-            $xmlData = file_get_contents(self::HASH_TAG_URL);
-            $result = file_put_contents(HASH_TAG_XML, $xmlData);
-            var_dump($result);
+            putFile();
+        } else {
+            if ($this->getUpdateTime('+2 month')) {
+                putFile();
+            }
         }
         return simplexml_load_file(HASH_TAG_XML);
+    }
+
+    protected function getUpdateTime($updateSpan)
+    {
+        $createTime = $this->getCreateFileTime();
+        $updateTime = strtotime($updateSpan, $createTime);
+
+        return time() - $updateTime > 0;
+    }
+
+    protected function getCreateFileTime()
+    {
+        return filemtime(HASH_TAG_XML);
+    }
+
+    protected function putFile()
+    {
+        $xmlData = file_get_contents(HASH_TAG_URL);
+        file_put_contents(HASH_TAG_XML, $xmlData);
     }
 }
