@@ -18,4 +18,13 @@ class HashTagTest extends \PHPUnit_Framework_TestCase
         var_dump($result);
         $this->assertSame($anser, (string) $result->hashtag);
     }
+
+    public function testタイトルからハッシュタグを返す()
+    {
+        $target = "『画像』俺、ツインテールになります。の作画!! 今期アニメで一番酷いな…もう笑うしかないよ…";
+        $anser = "#ore_twi";
+        $result = $this->hashtag->find($target);
+        var_dump($result);
+        $this->assertSame($anser, (string) $result->hashtag);
+    }
 }

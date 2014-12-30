@@ -13,11 +13,11 @@ class HashTag
         $this->hashTagList = $this->createHashTagList();
     }
 
-    public function similar($target)
+    public function similar($str)
     {
         $shortest = -1;
         foreach ($this->hashTagList as $hashtag) {
-            similar_text($target, $hashtag->title, $lev);
+            similar_text($str, $hashtag->title, $lev);
 
             if ($lev > $shortest || $shortest < 0) {
                 $closet = $hashtag;
@@ -26,6 +26,19 @@ class HashTag
         }
 
         return $closet;
+    }
+
+    public function find($str)
+    {
+        foreach ($this->hashTagList as $hashtag) {
+            $position = strpos($str, (string) $hashtag->title);
+            if ($position === false) {
+                continue;
+            }
+            return $hashtag;
+        }
+
+        return null;
     }
 
     /**
